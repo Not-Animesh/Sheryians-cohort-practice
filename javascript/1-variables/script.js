@@ -57,9 +57,12 @@ function abcd(){
     }
 }
 
-// global scope 
+// global scope (khule mein variable declare krna)
+
 // function scope
-// block scope
+// block scope{ curly space ke andar variable declare krna, but var ke liye block scope kaam nhi krta hai, var function scoped hota hai, let aur const block scoped hote hai}
+
+
 
 // refer to notes
 
@@ -94,6 +97,6 @@ a = 10;  // initialization part neeche chala jaata hai
 
 console.log(b);  //let mein bhi hoist hota hai kyuki console mein yeh bolta ki can't access 'b' before initialization
 
-let b = 10;  //hoisting hota hai, but temporal dead zone ke karan can't access 'b' before initialization error aata hai
+let q = 10;  //hoisting hota hai, but temporal dead zone ke karan can't access 'b' before initialization error aata hai
 
 // ********WHAT HE THINKS********
