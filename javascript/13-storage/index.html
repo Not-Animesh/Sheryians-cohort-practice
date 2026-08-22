@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Storage Practice</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="container">
+
+    <h1>Web Storage Practice</h1>
+
+    <p class="subtitle">
+      Local Storage • Session Storage • Cookies
+    </p>
+
+
+    <!-- =====================================
+         LOCAL STORAGE
+    ====================================== -->
+
+    <section class="card">
+
+      <h2>Local Storage</h2>
+
+      <p>
+        Data stays even after closing the browser.
+      </p>
+
+      <input
+        id="localInput"
+        type="text"
+        placeholder="Enter your name"
+      >
+
+      <div class="buttons">
+
+        <button id="localSave">
+          Save
+        </button>
+
+        <button id="localGet">
+          Get
+        </button>
+
+        <button id="localRemove">
+          Remove
+        </button>
+
+        <button id="localClear">
+          Clear
+        </button>
+
+      </div>
+
+      <p class="result" id="localResult">
+        No data
+      </p>
+
+    </section>
+
+
+    <!-- =====================================
+         SESSION STORAGE
+    ====================================== -->
+
+    <section class="card">
+
+      <h2>Session Storage</h2>
+
+      <p>
+        Data stays while this browser tab is open.
+      </p>
+
+      <input
+        id="sessionInput"
+        type="text"
+        placeholder="Enter a session value"
+      >
+
+      <div class="buttons">
+
+        <button id="sessionSave">
+          Save
+        </button>
+
+        <button id="sessionGet">
+          Get
+        </button>
+
+        <button id="sessionRemove">
+          Remove
+        </button>
+
+        <button id="sessionClear">
+          Clear
+        </button>
+
+      </div>
+
+      <p class="result" id="sessionResult">
+        No data
+      </p>
+
+    </section>
+
+
+    <!-- =====================================
+         COOKIES
+    ====================================== -->
+
+    <section class="card">
+
+      <h2>Cookies</h2>
+
+      <p>
+        Small data stored by the browser and sent
+        with requests to the website.
+      </p>
+
+      <input
+        id="cookieInput"
+        type="text"
+        placeholder="Enter cookie value"
+      >
+
+      <div class="buttons">
+
+        <button id="cookieSave">
+          Save
+        </button>
+
+        <button id="cookieGet">
+          Get
+        </button>
+
+        <button id="cookieRemove">
+          Remove
+        </button>
+
+        <button id="cookieClear">
+          Clear All
+        </button>
+
+      </div>
+
+      <p class="result" id="cookieResult">
+        No data
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Call Notes</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    .card-shadow {
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================
+       MAIN
+  ========================================== -->
+
+  <main class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="relative">
+
+      <!-- =====================================
+           LEFT BUTTONS
+      ====================================== -->
+
+      <div
+        class="absolute -left-20 top-1/2 -translate-y-1/2 flex flex-col gap-3"
+      >
+
+        <!-- Add -->
+        <button
+          id="addBtn"
+          class="w-10 h-10 rounded-full bg-white shadow-md
+                 flex items-center justify-center text-xl
+                 hover:bg-gray-100"
+        >
+          +
+        </button>
+
+
+        <!-- Highest bookings -->
+        <button
+          id="sortUp"
+          class="w-10 h-10 rounded-full bg-white shadow-md
+                 flex items-center justify-center text-xl
+                 hover:bg-gray-100"
+        >
+          ↑
+        </button>
+
+
+        <!-- Lowest bookings -->
+        <button
+          id="sortDown"
+          class="w-10 h-10 rounded-full bg-white shadow-md
+                 flex items-center justify-center text-xl
+                 hover:bg-gray-100"
+        >
+          ↓
+        </button>
+
+      </div>
+
+
+      <!-- =====================================
+           NOTE CONTAINER
+      ====================================== -->
+
+      <div
+        id="noteContainer"
+        class="w-[305px] min-h-[230px]
+               bg-white rounded-2xl p-5 card-shadow"
+      >
+
+        <!-- Initial HTML data -->
+        <img
+          src="https://i.pravatar.cc/150?img=47"
+          alt="Fatima Uma"
+          class="w-11 h-11 rounded-full object-cover mb-3"
+        >
+
+        <h2 class="text-xl font-bold">
+          Fatima Uma
+        </h2>
+
+        <div class="mt-3 space-y-2 text-sm">
+
+          <div class="flex justify-between">
+            <span class="text-gray-500">
+              Home town
+            </span>
+
+            <span>
+              Singapore
+            </span>
+          </div>
+
+
+          <div class="flex justify-between">
+            <span class="text-gray-500">
+              Bookings
+            </span>
+
+            <span>
+              3 times
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="flex gap-2 mt-4">
+
+          <button
+            class="bg-black text-white rounded-full px-4 py-2 text-sm"
+          >
+            ☎ Call
+          </button>
+
+          <button
+            class="bg-gray-100 rounded-full px-4 py-2 text-sm"
+          >
+            Message
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- =====================================
+           FILTER BUTTONS
+      ====================================== -->
+
+      <div
+        id="filters"
+        class="absolute -right-16 top-1/2
+               -translate-y-1/2 flex flex-col gap-3"
+      >
+
+        <!-- Emergency -->
+        <button
+          class="filter w-5 h-5 rounded-full bg-black"
+          data-filter="Emergency"
+          title="Emergency"
+        ></button>
+
+
+        <!-- Urgent -->
+        <button
+          class="filter w-5 h-5 rounded-full bg-purple-500"
+          data-filter="Urgent"
+          title="Urgent"
+        ></button>
+
+
+        <!-- Important -->
+        <button
+          class="filter w-5 h-5 rounded-full bg-orange-400"
+          data-filter="Important"
+          title="Important"
+        ></button>
+
+
+        <!-- No Rush -->
+        <button
+          class="filter w-5 h-5 rounded-full bg-teal-500"
+          data-filter="No Rush"
+          title="No Rush"
+        ></button>
+
+
+        <!-- All -->
+        <button
+          class="filter w-5 h-5 rounded-full bg-gray-300"
+          data-filter="all"
+          title="All"
+        ></button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================================
+       FORM CONTAINER
+  ========================================== -->
+
+  <div
+    id="formContainer"
+    class="hidden fixed inset-0
+           bg-white/80 backdrop-blur-sm
+           items-center justify-center p-5"
+  >
+
+    <div
+      class="w-full max-w-[505px]
+             bg-white rounded-2xl p-6 shadow-xl"
+    >
+
+      <h2 class="text-2xl font-bold mb-5">
+        New Call
+      </h2>
+
+
+      <form id="callForm">
+
+        <!-- IMAGE -->
+
+        <div class="mb-4">
+
+          <label class="block text-sm mb-2">
+            Image URL
+          </label>
+
+          <input
+            id="image"
+            type="url"
+            placeholder="https://example.com/photo.jpg"
+            required
+            class="w-full border border-gray-200
+                   rounded-xl px-4 py-3
+                   outline-none focus:border-gray-400"
+          >
+
+        </div>
+
+
+        <!-- NAME -->
+
+        <div class="mb-4">
+
+          <label class="block text-sm mb-2">
+            Full Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter full name"
+            required
+            class="w-full border border-gray-200
+                   rounded-xl px-4 py-3
+                   outline-none focus:border-gray-400"
+          >
+
+        </div>
+
+
+        <!-- TOWN -->
+
+        <div class="mb-4">
+
+          <label class="block text-sm mb-2">
+            Home Town
+          </label>
+
+          <input
+            id="town"
+            type="text"
+            placeholder="Enter home town"
+            required
+            class="w-full border border-gray-200
+                   rounded-xl px-4 py-3
+                   outline-none focus:border-gray-400"
+          >
+
+        </div>
+
+
+        <!-- PURPOSE -->
+
+        <div class="mb-4">
+
+          <label class="block text-sm mb-2">
+            Purpose
+          </label>
+
+          <input
+            id="purpose"
+            type="text"
+            placeholder="e.g. Quick appointment note"
+            required
+            class="w-full border border-gray-200
+                   rounded-xl px-4 py-3
+                   outline-none focus:border-gray-400"
+          >
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="mb-6">
+
+          <label class="block text-sm mb-3">
+            Category
+          </label>
+
+
+          <div class="flex flex-wrap gap-2">
+
+            <!-- Emergency -->
+
+            <label
+              class="border border-red-500
+                     text-red-600 rounded-full
+                     px-3 py-1 cursor-pointer"
+            >
+
+              <input
+                type="radio"
+                name="category"
+                value="Emergency"
+                required
+              >
+
+              Emergency
+
+            </label>
+
+
+            <!-- Important -->
+
+            <label
+              class="border border-orange-400
+                     text-orange-600 rounded-full
+                     px-3 py-1 cursor-pointer"
+            >
+
+              <input
+                type="radio"
+                name="category"
+                value="Important"
+              >
+
+              Important
+
+            </label>
+
+
+            <!-- Urgent -->
+
+            <label
+              class="border border-purple-600
+                     text-purple-700 rounded-full
+                     px-3 py-1 cursor-pointer"
+            >
+
+              <input
+                type="radio"
+                name="category"
+                value="Urgent"
+              >
+
+              Urgent
+
+            </label>
+
+
+            <!-- No Rush -->
+
+            <label
+              class="border border-gray-400
+                     text-gray-700 rounded-full
+                     px-3 py-1 cursor-pointer"
+            >
+
+              <input
+                type="radio"
+                name="category"
+                value="No Rush"
+              >
+
+              No Rush
+
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- CREATE -->
+
+        <button
+          type="submit"
+          class="w-full bg-black text-white
+                 rounded-full py-3 font-semibold
+                 hover:bg-gray-800"
+        >
+          Create Note
+        </button>
+
+
+        <!-- CLOSE -->
+
+        <button
+          type="button"
+          id="closeBtn"
+          class="w-full bg-red-500 text-white
+                 rounded-full py-3 mt-2
+                 hover:bg-red-600"
+        >
+          Close
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
