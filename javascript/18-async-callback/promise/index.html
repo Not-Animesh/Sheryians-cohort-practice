@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    JavaScript Async — Promises & Async/Await
+  </title>
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <script>
+
+    tailwind.config = {
+
+      theme: {
+
+        extend: {
+
+          colors: {
+
+            ink: "#09090b",
+
+            panel: "#111113",
+
+            panel2: "#18181b",
+
+            line: "#27272a",
+
+            accent: "#a78bfa",
+
+            cyanx: "#67e8f9",
+
+            greenx: "#86efac",
+
+            orangex: "#fdba74",
+
+            redx: "#fca5a5"
+
+          },
+
+
+          fontFamily: {
+
+            mono: [
+              "JetBrains Mono",
+              "Consolas",
+              "monospace"
+            ]
+
+          }
+
+        }
+
+      }
+
+    };
+
+  </script>
+
+</head>
+
+
+
+<body class="bg-ink text-zinc-200 selection:bg-violet-500/30">
+
+
+  <!-- HEADER -->
+
+  <header
+    class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur"
+  >
+
+    <div class="max-w-7xl mx-auto px-5 py-4">
+
+      <p
+        class="text-xs uppercase tracking-[0.25em] text-violet-400"
+      >
+        JavaScript Async Course
+      </p>
+
+
+      <h1 class="text-xl md:text-2xl font-bold">
+
+        Part 2 — Promises & Async/Await
+
+      </h1>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- MAIN -->
+
+  <main
+    class="max-w-7xl mx-auto px-5 py-8 space-y-10"
+  >
+
+
+    <!-- HERO -->
+
+    <section
+      class="grid lg:grid-cols-[1.3fr_.7fr] gap-6"
+    >
+
+      <div
+        class="rounded-2xl border border-line bg-panel p-7"
+      >
+
+        <p
+          class="text-sm text-violet-300 font-semibold mb-3"
+        >
+          The upgrade from callbacks
+        </p>
+
+
+        <h2
+          class="text-3xl md:text-5xl font-black leading-tight"
+        >
+          A Promise represents a result that will exist later.
+        </h2>
+
+
+        <p
+          class="mt-5 text-lg text-zinc-400 leading-8"
+        >
+          Instead of nesting callbacks, you can create a Promise,
+          wait for it, handle success, and handle failure in a
+          much cleaner way.
+        </p>
+
+      </div>
+
+
+
+      <div
+        class="rounded-2xl border border-line bg-panel p-7"
+      >
+
+        <p
+          class="text-xs uppercase tracking-widest text-zinc-500"
+        >
+          Promise states
+        </p>
+
+
+        <div class="mt-5 space-y-3">
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+            <span class="text-orangex">
+              Pending
+            </span>
+
+            —
+            still working
+          </div>
+
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+            <span class="text-greenx">
+              Fulfilled
+            </span>
+
+            —
+            success
+          </div>
+
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+            <span class="text-redx">
+              Rejected
+            </span>
+
+            —
+            failure
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- WHAT IS PROMISE -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        1. What is a Promise?
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+        Imagine ordering food.
+
+        You do not stand inside the kitchen waiting.
+
+        You place the order and receive a promise:
+
+        “I will give you the food later.”
+
+        JavaScript Promises work with the same basic idea.
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>const promise = new Promise((resolve, reject) => {
+
+  // do some work
+
+  if (everythingIsOkay) {
+
+    resolve("Success!");
+
+  } else {
+
+    reject("Something went wrong.");
+
+  }
+
+});</code></pre>
+
+    </section>
+
+
+
+    <!-- PROMISE STATES -->
+
+    <section
+      class="grid lg:grid-cols-3 gap-5"
+    >
+
+      <article
+        class="rounded-2xl border border-orange-400/20 bg-orange-400/5 p-6"
+      >
+
+        <h3 class="text-xl font-bold text-orangex">
+          Pending
+        </h3>
+
+
+        <p
+          class="mt-3 text-zinc-400 leading-7"
+        >
+          The asynchronous operation has started
+          but has not finished.
+        </p>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-green-400/20 bg-green-400/5 p-6"
+      >
+
+        <h3 class="text-xl font-bold text-greenx">
+          Fulfilled
+        </h3>
+
+
+        <p
+          class="mt-3 text-zinc-400 leading-7"
+        >
+          The operation finished successfully.
+          The Promise has a value.
+        </p>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-red-400/20 bg-red-400/5 p-6"
+      >
+
+        <h3 class="text-xl font-bold text-redx">
+          Rejected
+        </h3>
+
+
+        <p
+          class="mt-3 text-zinc-400 leading-7"
+        >
+          The operation failed.
+          The Promise has a reason/error.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- RESOLVE REJECT -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          2. resolve() and reject()
+        </h2>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>function getData() {
+
+  return new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+
+      const success = true;
+
+      if (success) {
+
+        resolve("Data received!");
+
+      } else {
+
+        reject("Request failed!");
+
+      }
+
+    }, 1000);
+
+  });
+
+}</code></pre>
+
+
+        <p class="mt-4 text-zinc-400">
+
+          <code class="text-violet-300">
+            resolve(value)
+          </code>
+
+          means success.
+
+          <code class="text-redx">
+            reject(error)
+          </code>
+
+          means failure.
+
+        </p>
+
+      </article>
+
+
+
+      <!-- THEN CATCH -->
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          3. then() and catch()
+        </h2>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>getData()
+
+  .then((data) => {
+
+    console.log(data);
+
+  })
+
+  .catch((error) => {
+
+    console.error(error);
+
+  });</code></pre>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          <code class="text-greenx">
+            then()
+          </code>
+
+          handles success.
+
+          <code class="text-redx">
+            catch()
+          </code>
+
+          handles rejection/errors.
+
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- CHAINING -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        4. Promise chaining
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+        A major advantage is that one asynchronous result
+        can feed the next operation.
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>loginUser()
+
+  .then((user) => {
+
+    return getProfile(user);
+
+  })
+
+  .then((profile) => {
+
+    return getOrders(profile);
+
+  })
+
+  .then((orders) => {
+
+    return getFirstOrder(orders);
+
+  })
+
+  .then((order) => {
+
+    console.log("Final order:", order);
+
+  })
+
+  .catch((error) => {
+
+    console.error("Something failed:", error);
+
+  });</code></pre>
+
+
+      <div
+        class="mt-5 grid md:grid-cols-4 gap-3 text-sm"
+      >
+
+        <div
+          class="p-4 rounded-xl border border-line bg-panel2"
+        >
+          Login
+        </div>
+
+
+        <div
+          class="p-4 rounded-xl border border-line bg-panel2"
+        >
+          → Profile
+        </div>
+
+
+        <div
+          class="p-4 rounded-xl border border-line bg-panel2"
+        >
+          → Orders
+        </div>
+
+
+        <div
+          class="p-4 rounded-xl border border-line bg-panel2"
+        >
+          → First order
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ASYNC -->
+
+    <section
+      class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        5. Important: async functions always return Promises
+      </h2>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>async function hello() {
+
+  return "Hello!";
+
+}
+
+const result = hello();
+
+console.log(result);
+
+// Promise { "Hello!" }</code></pre>
+
+
+      <p class="mt-4 text-zinc-300 leading-7">
+
+        Even though you wrote
+
+        <code class="text-violet-300">
+          return "Hello!"
+        </code>,
+
+        the async function wraps that value in a Promise.
+
+      </p>
+
+    </section>
+
+
+
+    <!-- AWAIT + TRY CATCH -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          6. await
+        </h2>
+
+
+        <p
+          class="mt-3 text-zinc-400 leading-7"
+        >
+
+          <code class="text-cyanx">
+            await
+          </code>
+
+          waits for a Promise to settle inside an async function.
+
+          It makes asynchronous code read from top to bottom.
+
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>async function showData() {
+
+  const data = await getData();
+
+  console.log(data);
+
+}
+
+showData();</code></pre>
+
+
+        <div
+          class="mt-4 p-4 rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-sm text-cyan-100"
+        >
+
+          Think:
+
+          “Give me the result of this Promise before I continue
+          this async function.”
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          7. try...catch
+        </h2>
+
+
+        <p
+          class="mt-3 text-zinc-400 leading-7"
+        >
+          When using await, a rejected Promise can be handled
+          with normal-looking try/catch.
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>async function showData() {
+
+  try {
+
+    const data = await getData();
+
+    console.log(data);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}</code></pre>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ASYNC CHAIN -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        8. Chaining async operations with await
+      </h2>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>async function loadDashboard() {
+
+  try {
+
+    const user = await loginUser();
+
+    const profile = await getProfile(user);
+
+    const orders = await getOrders(profile);
+
+    const firstOrder = await getFirstOrder(orders);
+
+    console.log(firstOrder);
+
+  } catch (error) {
+
+    console.error("Something failed:", error);
+
+  }
+
+}</code></pre>
+
+
+      <p
+        class="mt-4 text-zinc-400 leading-7"
+      >
+        Compare this with callback hell.
+        The dependency is still there,
+        but the nesting is gone.
+      </p>
+
+    </section>
+
+
+
+    <!-- MIXING -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        9. Mixing async/await with then/catch
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+        You technically can mix them because async/await
+        is built on Promises, but beginners should usually
+        choose one style per flow for readability.
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>async function example() {
+
+  const data = await getData();
+
+  return processData(data);
+
+}
+
+
+example()
+
+  .then((result) => {
+
+    console.log(result);
+
+  })
+
+  .catch((error) => {
+
+    console.error(error);
+
+  });</code></pre>
+
+
+      <div
+        class="mt-5 p-4 rounded-xl border border-orange-400/20 bg-orange-400/5 text-orange-100"
+      >
+
+        This is not automatically wrong.
+
+        The important point is understanding that
+
+        <strong>
+          async/await and then/catch both work with Promises.
+        </strong>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INTERACTIVE DEMO -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <div
+        class="flex flex-wrap items-center justify-between gap-3"
+      >
+
+        <div>
+
+          <h2 class="text-2xl font-bold">
+            10. Interactive Promise demo
+          </h2>
+
+          <p class="text-zinc-500 mt-1">
+            Run success or failure and observe the state.
+          </p>
+
+        </div>
+
+
+        <div class="flex gap-2">
+
+          <button
+            id="promiseSuccess"
+            class="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-500 font-semibold"
+          >
+            Success
+          </button>
+
+
+          <button
+            id="promiseFailure"
+            class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 font-semibold"
+          >
+            Failure
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="promiseOutput"
+        class="mt-5 min-h-32 rounded-xl border border-line bg-panel2 p-5 font-mono text-sm leading-7"
+      >
+        Choose an option...
+      </div>
+
+    </section>
+
+
+
+    <!-- COMPARISON + CONFUSIONS -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          11. Callback vs Promise vs async/await
+        </h2>
+
+
+        <div class="mt-5 overflow-x-auto">
+
+          <table class="w-full text-left text-sm">
+
+            <thead>
+
+              <tr
+                class="border-b border-line text-zinc-500"
+              >
+
+                <th class="py-3 pr-4">
+                  Style
+                </th>
+
+                <th class="py-3 pr-4">
+                  Main idea
+                </th>
+
+                <th class="py-3">
+                  Beginner feeling
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              class="divide-y divide-line"
+            >
+
+              <tr>
+
+                <td class="py-4 pr-4 font-semibold">
+                  Callback
+                </td>
+
+                <td class="py-4 pr-4">
+                  Call this function later
+                </td>
+
+                <td class="py-4">
+                  Can become nested
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="py-4 pr-4 font-semibold">
+                  Promise
+                </td>
+
+                <td class="py-4 pr-4">
+                  Future result
+                </td>
+
+                <td class="py-4">
+                  Cleaner chaining
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td class="py-4 pr-4 font-semibold">
+                  async/await
+                </td>
+
+                <td class="py-4 pr-4">
+                  Wait for Promise in readable syntax
+                </td>
+
+                <td class="py-4">
+                  Usually easiest to read
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h2 class="text-2xl font-bold">
+          12. Common beginner confusions
+        </h2>
+
+
+        <div class="mt-5 space-y-4">
+
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+
+            <strong class="text-violet-300">
+              “async means the function runs in parallel.”
+            </strong>
+
+            <p class="text-zinc-400 mt-2">
+              Not exactly. async changes how the function
+              returns a Promise and enables await.
+            </p>
+
+          </div>
+
+
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+
+            <strong class="text-violet-300">
+              “await blocks all JavaScript.”
+            </strong>
+
+            <p class="text-zinc-400 mt-2">
+              No. await pauses the current async function
+              while the rest of the environment can continue.
+            </p>
+
+          </div>
+
+
+
+          <div
+            class="p-4 rounded-xl bg-panel2 border border-line"
+          >
+
+            <strong class="text-violet-300">
+              “then and await are unrelated.”
+            </strong>
+
+            <p class="text-zinc-400 mt-2">
+              They are two ways of consuming Promise results.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- MINDSET -->
+
+    <section
+      class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        Final mindset
+      </h2>
+
+
+      <p
+        class="mt-4 text-xl md:text-2xl font-semibold leading-relaxed"
+      >
+        Async isn't magic — it's structured waiting.
+      </p>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+        Start a task → receive a Promise → wait for its result →
+        handle success or failure → continue to the next operation.
+      </p>
+
+    </section>
+
+
+
+    <!-- CHECKLIST -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        Beginner checklist
+      </h2>
+
+
+      <div
+        class="mt-5 grid md:grid-cols-2 gap-3"
+      >
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can explain pending, fulfilled, and rejected.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I know what resolve() does.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I know what reject() does.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can use then() and catch().
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I know every async function returns a Promise.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can use await inside an async function.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can handle await errors with try/catch.
+
+        </label>
+
+
+        <label class="flex gap-3 items-start">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can chain multiple async operations.
+
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer
+    class="border-t border-line py-8 text-center text-sm text-zinc-600"
+  >
+    Don't just read the code — change the delays, values,
+    and errors and run it again.
+  </footer>
+
+
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
