@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>JavaScript Concepts</title>
+
+  <!-- Tailwind CDN - no installation needed -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-[#0a0a0a] text-white">
+
+  <main class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="w-full max-w-xl">
+
+      <h1 class="text-3xl font-bold text-center mb-2">
+        JavaScript Concepts
+      </h1>
+
+      <p class="text-center text-gray-500 mb-8">
+        Scope • Execution Context • Closures
+      </p>
+
+
+      <!-- =====================================
+           SCOPE
+      ====================================== -->
+
+      <section class="bg-[#151515] border border-[#292929]
+                      rounded-xl p-5 mb-4">
+
+        <h2 class="text-xl font-semibold mb-2">
+          1. Scope
+        </h2>
+
+        <p class="text-gray-400 text-sm mb-4">
+          Scope decides where a variable can be used.
+        </p>
+
+        <button
+          id="scopeBtn"
+          class="bg-white text-black px-4 py-2
+                 rounded-lg"
+        >
+          Show Scope Example
+        </button>
+
+      </section>
+
+
+      <!-- =====================================
+           EXECUTION CONTEXT
+      ====================================== -->
+
+      <section class="bg-[#151515] border border-[#292929]
+                      rounded-xl p-5 mb-4">
+
+        <h2 class="text-xl font-semibold mb-2">
+          2. Execution Context
+        </h2>
+
+        <p class="text-gray-400 text-sm mb-4">
+          JavaScript creates a place to run your code.
+        </p>
+
+        <button
+          id="contextBtn"
+          class="bg-white text-black px-4 py-2
+                 rounded-lg"
+        >
+          Run Example
+        </button>
+
+      </section>
+
+
+      <!-- =====================================
+           CLOSURE
+      ====================================== -->
+
+      <section class="bg-[#151515] border border-[#292929]
+                      rounded-xl p-5 mb-4">
+
+        <h2 class="text-xl font-semibold mb-2">
+          3. Closure
+        </h2>
+
+        <p class="text-gray-400 text-sm mb-4">
+          A function can remember variables from
+          where it was created.
+        </p>
+
+        <button
+          id="countBtn"
+          class="bg-white text-black px-4 py-2
+                 rounded-lg"
+        >
+          Count: 0
+        </button>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================
+       TOASTER
+  ====================================== -->
+
+  <!--
+    This is where our toast message will appear.
+
+    JavaScript will change its text and show it
+    when we need it.
+  -->
+
+  <div
+    id="toast"
+    class="hidden fixed bottom-6 right-6
+           bg-white text-black
+           px-5 py-3 rounded-lg
+           shadow-lg"
+  >
+    Hello!
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
