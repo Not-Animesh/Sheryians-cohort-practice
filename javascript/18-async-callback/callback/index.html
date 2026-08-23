@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Async — Callbacks</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#09090b",
+            panel: "#111113",
+            panel2: "#18181b",
+            line: "#27272a",
+            accent: "#a78bfa",
+            cyanx: "#67e8f9",
+            greenx: "#86efac",
+            orangex: "#fdba74"
+          },
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "Consolas", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-ink text-zinc-200 font-sans selection:bg-violet-500/30">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+
+      <div>
+        <p class="text-xs uppercase tracking-[0.25em] text-violet-400">
+          JavaScript Async Course
+        </p>
+
+        <h1 class="text-xl md:text-2xl font-bold">
+          Part 1 — Callbacks
+        </h1>
+      </div>
+
+      <span class="hidden sm:inline-flex px-3 py-1 rounded-full border border-violet-400/30 bg-violet-400/10 text-violet-300 text-xs">
+        Beginner friendly
+      </span>
+
+    </div>
+  </header>
+
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-5 py-8 space-y-10">
+
+
+    <!-- HERO -->
+    <section class="grid lg:grid-cols-[1.4fr_.6fr] gap-6">
+
+      <div class="rounded-2xl border border-line bg-panel p-7">
+
+        <p class="text-sm text-violet-300 font-semibold mb-3">
+          The big idea
+        </p>
+
+        <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          JavaScript can start something now and finish it later.
+        </h2>
+
+        <p class="mt-5 text-zinc-400 text-lg leading-8">
+          A callback is simply a function that you give to another function
+          so that it can call your function later, usually after some work
+          has finished.
+        </p>
+
+      </div>
+
+
+      <div class="rounded-2xl border border-line bg-panel p-7">
+
+        <p class="text-xs uppercase tracking-widest text-zinc-500">
+          Mental model
+        </p>
+
+        <div class="mt-5 space-y-3">
+
+          <div class="p-4 rounded-xl bg-panel2 border border-line">
+            <span class="text-cyanx">1.</span>
+            Start a task
+          </div>
+
+          <div class="p-4 rounded-xl bg-panel2 border border-line">
+            <span class="text-cyanx">2.</span>
+            Give it a callback
+          </div>
+
+          <div class="p-4 rounded-xl bg-panel2 border border-line">
+            <span class="text-cyanx">3.</span>
+            JS continues
+          </div>
+
+          <div class="p-4 rounded-xl bg-panel2 border border-line">
+            <span class="text-cyanx">4.</span>
+            Callback runs later
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+
+    <!-- SYNC VS ASYNC -->
+    <section class="grid lg:grid-cols-2 gap-6">
+
+      <article class="rounded-2xl border border-line bg-panel overflow-hidden">
+
+        <div class="px-6 py-4 border-b border-line">
+
+          <h2 class="text-xl font-bold">
+            1. Synchronous vs asynchronous
+          </h2>
+
+          <p class="text-sm text-zinc-500 mt-1">
+            First understand the problem before learning the solution.
+          </p>
+
+        </div>
+
+
+        <div class="p-6 space-y-6">
+
+          <div>
+
+            <h3 class="font-semibold text-greenx">
+              Synchronous
+            </h3>
+
+            <p class="text-zinc-400 mt-2 leading-7">
+              Code normally runs from top to bottom.
+              If line 2 takes time, line 3 waits.
+            </p>
+
+            <pre class="mt-3 p-4 rounded-xl bg-black/60 overflow-x-auto text-sm"><code>console.log("A");
+console.log("B");
+console.log("C");
+
+// A
+// B
+// C</code></pre>
+
+          </div>
+
+
+          <div>
+
+            <h3 class="font-semibold text-orangex">
+              Asynchronous
+            </h3>
+
+            <p class="text-zinc-400 mt-2 leading-7">
+              A slow operation can be started while JavaScript
+              continues with other work.
+            </p>
+
+            <pre class="mt-3 p-4 rounded-xl bg-black/60 overflow-x-auto text-sm"><code>console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+}, 1000);
+
+console.log("C");
+
+// A
+// C
+// B</code></pre>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- CALLBACK -->
+      <article class="rounded-2xl border border-line bg-panel overflow-hidden">
+
+        <div class="px-6 py-4 border-b border-line">
+
+          <h2 class="text-xl font-bold">
+            2. What exactly is a callback?
+          </h2>
+
+          <p class="text-sm text-zinc-500 mt-1">
+            A callback is not a special JavaScript type.
+          </p>
+
+        </div>
+
+
+        <div class="p-6">
+
+          <p class="text-zinc-400 leading-7">
+            It is just a normal function passed as an argument
+            to another function.
+          </p>
+
+          <pre class="mt-4 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"><code>function greet(name) {
+  console.log("Hello " + name);
+}
+
+function processUser(callback) {
+  const name = "Animesh";
+  callback(name);
+}
+
+processUser(greet);</code></pre>
+
+
+          <div class="mt-5 p-4 rounded-xl border border-violet-400/20 bg-violet-400/5 text-sm text-zinc-300">
+
+            <strong class="text-violet-300">
+              Read it like English:
+            </strong>
+
+            “processUser, here is the function I want you to call
+            when you are ready.”
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ASYNC CALLBACK -->
+    <section class="rounded-2xl border border-line bg-panel p-6">
+
+      <div class="flex flex-wrap items-center justify-between gap-3">
+
+        <div>
+
+          <h2 class="text-2xl font-bold">
+            3. A real asynchronous callback
+          </h2>
+
+          <p class="text-zinc-500 mt-1">
+            Click the button and watch the order of execution.
+          </p>
+
+        </div>
+
+
+        <button
+          id="runBasic"
+          class="px-4 py-2 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-semibold transition"
+        >
+          Run example
+        </button>
+
+      </div>
+
+
+      <pre class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"><code>console.log("Start");
+
+setTimeout(() => {
+  console.log("Timer finished");
+}, 2000);
+
+console.log("End");</code></pre>
+
+
+      <div
+        id="basicOutput"
+        class="mt-5 min-h-28 rounded-xl border border-line bg-panel2 p-4 font-mono text-sm text-zinc-300"
+      >
+        Output will appear here...
+      </div>
+
+    </section>
+
+
+
+    <!-- ERROR CALLBACK + CALLBACK HELL -->
+    <section class="grid lg:grid-cols-2 gap-6">
+
+
+      <article class="rounded-2xl border border-line bg-panel p-6">
+
+        <h2 class="text-2xl font-bold">
+          4. Callback with success + error
+        </h2>
+
+        <p class="mt-3 text-zinc-400 leading-7">
+          Before Promises became common, a callback often received
+          two arguments: an error first, then the successful result.
+        </p>
+
+
+        <pre class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"><code>function getUser(id, callback) {
+  setTimeout(() => {
+
+    if (id === 1) {
+
+      callback(null, {
+        id: 1,
+        name: "Alex"
+      });
+
+    } else {
+
+      callback("User not found", null);
+
+    }
+
+  }, 1000);
+}
+
+getUser(1, (error, user) => {
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  console.log(user);
+
+});</code></pre>
+
+      </article>
+
+
+
+      <article class="rounded-2xl border border-line bg-panel p-6">
+
+        <h2 class="text-2xl font-bold">
+          5. Callback hell
+        </h2>
+
+        <p class="mt-3 text-zinc-400 leading-7">
+          When asynchronous tasks depend on each other,
+          callbacks can become deeply nested.
+          The code starts looking like a staircase or pyramid.
+        </p>
+
+
+        <pre class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"><code>loginUser((user) => {
+
+  getProfile(user, (profile) => {
+
+    getOrders(profile, (orders) => {
+
+      getFirstOrder(orders, (order) => {
+
+        sendInvoice(order, (invoice) => {
+
+          console.log(invoice);
+
+        });
+
+      });
+
+    });
+
+  });
+
+});</code></pre>
+
+
+        <div class="mt-4 p-4 rounded-xl border border-orange-400/20 bg-orange-400/5 text-orange-200 text-sm">
+
+          Problem: harder to read, harder to handle errors,
+          and harder to maintain.
+
+          This is one reason Promises became popular.
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- CHAIN -->
+    <section class="rounded-2xl border border-line bg-panel p-6">
+
+      <h2 class="text-2xl font-bold">
+        6. Turn callback hell into a sequence
+      </h2>
+
+      <p class="mt-3 text-zinc-400 leading-7">
+        The next lesson will replace this nesting with Promises
+        and async/await.
+
+        For now, notice the dependency chain:
+      </p>
+
+
+      <div class="mt-6 grid md:grid-cols-5 gap-3 text-sm">
+
+        <div class="p-4 rounded-xl bg-panel2 border border-line text-center">
+          Login
+        </div>
+
+        <div class="hidden md:flex items-center justify-center text-violet-400">
+          →
+        </div>
+
+        <div class="p-4 rounded-xl bg-panel2 border border-line text-center">
+          Profile
+        </div>
+
+        <div class="hidden md:flex items-center justify-center text-violet-400">
+          →
+        </div>
+
+        <div class="p-4 rounded-xl bg-panel2 border border-line text-center">
+          Orders
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CHECKLIST -->
+    <section class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6">
+
+      <h2 class="text-2xl font-bold">
+        Beginner checklist
+      </h2>
+
+
+      <div class="mt-5 grid md:grid-cols-2 gap-3">
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I understand that a function can be passed as an argument.
+        </label>
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I know that setTimeout is asynchronous.
+        </label>
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I can explain what a callback is.
+        </label>
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I understand why nested callbacks become difficult.
+        </label>
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I can predict A → C → B in the timer example.
+        </label>
+
+        <label class="flex gap-3 items-start">
+          <input type="checkbox" class="mt-1 accent-violet-500">
+          I am ready to learn Promises.
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="border-t border-line py-8 text-center text-sm text-zinc-600">
+    Learn slowly. Run the examples. Change the code. Observe the output.
+  </footer>
+
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
