@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>JavaScript OOP — Beginner Guide</title>
+
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <script>
+
+    tailwind.config = {
+
+      theme: {
+
+        extend: {
+
+          colors: {
+
+            ink: "#09090b",
+
+            panel: "#111113",
+
+            panel2: "#18181b",
+
+            line: "#27272a",
+
+            purplex: "#a78bfa",
+
+            cyanx: "#67e8f9",
+
+            greenx: "#86efac",
+
+            orangex: "#fdba74",
+
+            redx: "#fca5a5",
+
+            pinkx: "#f9a8d4"
+
+          },
+
+          fontFamily: {
+
+            mono: [
+              "JetBrains Mono",
+              "Consolas",
+              "monospace"
+            ]
+
+          }
+
+        }
+
+      }
+
+    };
+
+  </script>
+
+</head>
+
+
+
+<body
+  class="bg-ink text-zinc-200 font-sans selection:bg-violet-500/30"
+>
+
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header
+    class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur"
+  >
+
+    <div
+      class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between"
+    >
+
+      <div>
+
+        <p
+          class="text-xs uppercase tracking-[0.25em] text-violet-400"
+        >
+          JavaScript Beginner Course
+        </p>
+
+
+        <h1
+          class="text-xl md:text-2xl font-bold"
+        >
+          Object-Oriented Programming
+        </h1>
+
+      </div>
+
+
+      <span
+        class="hidden sm:block px-3 py-1 rounded-full border border-violet-400/30 bg-violet-400/10 text-violet-300 text-xs"
+      >
+        OOP
+      </span>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+
+  <main
+    class="max-w-7xl mx-auto px-5 py-8 space-y-10"
+  >
+
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-7 md:p-10"
+    >
+
+      <p
+        class="text-sm text-violet-300 font-semibold mb-3"
+      >
+        Start here
+      </p>
+
+
+      <h2
+        class="text-4xl md:text-6xl font-black tracking-tight leading-tight"
+      >
+        OOP is just a way to organize your code around objects.
+      </h2>
+
+
+      <p
+        class="mt-6 text-lg text-zinc-400 leading-8 max-w-4xl"
+      >
+
+        Don't let the name "Object-Oriented Programming"
+        scare you.
+
+        You already understand objects in JavaScript.
+
+        OOP simply gives you a structured way to create objects,
+        give them data, and give them actions.
+
+      </p>
+
+
+      <div
+        class="mt-7 grid md:grid-cols-3 gap-4"
+      >
+
+        <div
+          class="rounded-xl border border-line bg-panel2 p-5"
+        >
+
+          <p
+            class="text-xs uppercase tracking-widest text-zinc-500"
+          >
+            Object
+          </p>
+
+          <p
+            class="mt-2 text-xl font-bold text-cyanx"
+          >
+            A thing
+          </p>
+
+          <p
+            class="mt-2 text-zinc-500"
+          >
+            Student, Car, BankAccount
+          </p>
+
+        </div>
+
+
+        <div
+          class="rounded-xl border border-line bg-panel2 p-5"
+        >
+
+          <p
+            class="text-xs uppercase tracking-widest text-zinc-500"
+          >
+            Properties
+          </p>
+
+          <p
+            class="mt-2 text-xl font-bold text-greenx"
+          >
+            Data
+          </p>
+
+          <p
+            class="mt-2 text-zinc-500"
+          >
+            name, age, color, balance
+          </p>
+
+        </div>
+
+
+        <div
+          class="rounded-xl border border-line bg-panel2 p-5"
+        >
+
+          <p
+            class="text-xs uppercase tracking-widest text-zinc-500"
+          >
+            Methods
+          </p>
+
+          <p
+            class="mt-2 text-xl font-bold text-orangex"
+          >
+            Actions
+          </p>
+
+          <p
+            class="mt-2 text-zinc-500"
+          >
+            study(), drive(), deposit()
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         WHAT IS OOP
+         ======================================================= -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-violet-400 font-semibold"
+        >
+          01
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          What is OOP?
+        </h2>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-8"
+        >
+
+          OOP stands for
+
+          <strong class="text-zinc-200">
+            Object-Oriented Programming
+          </strong>.
+
+          Instead of writing all your code randomly,
+          you group related data and functions together
+          inside objects.
+
+        </p>
+
+
+        <div
+          class="mt-5 p-5 rounded-xl bg-black/40 border border-line"
+        >
+
+          <p class="text-zinc-500 text-sm">
+            Real-world example
+          </p>
+
+
+          <p
+            class="mt-2 text-lg font-semibold"
+          >
+            A Car
+          </p>
+
+
+          <p class="mt-2 text-zinc-400">
+            Data → brand, color, speed
+          </p>
+
+
+          <p class="mt-1 text-zinc-400">
+            Actions → start(), brake(), accelerate()
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-cyanx font-semibold"
+        >
+          Simple mental model
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          Object = Data + Actions
+        </h2>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>const car = {
+
+  brand: "Toyota",
+
+  color: "Black",
+
+  speed: 0,
+
+  start() {
+
+    console.log("Car started");
+
+  }
+
+};</code></pre>
+
+
+        <p
+          class="mt-4 text-zinc-400"
+        >
+          This is already object-oriented thinking.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         OBJECT
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-violet-400 font-semibold"
+      >
+        02
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        Object
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+
+        An object is a collection of related information
+        and functionality.
+
+        You can create an object using curly brackets
+
+        <code class="text-violet-300">
+          {}
+        </code>.
+
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>const student = {
+
+  name: "Animesh",
+
+  age: 20,
+
+  course: "BCA",
+
+  study() {
+
+    console.log("Student is studying");
+
+  }
+
+};
+
+
+console.log(student.name);
+
+student.study();</code></pre>
+
+
+      <div
+        class="mt-5 grid md:grid-cols-2 gap-4"
+      >
+
+        <div
+          class="p-4 rounded-xl bg-panel2 border border-line"
+        >
+
+          <strong class="text-cyanx">
+            Properties
+          </strong>
+
+          <p class="mt-2 text-zinc-500">
+            name, age, course
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-4 rounded-xl bg-panel2 border border-line"
+        >
+
+          <strong class="text-greenx">
+            Method
+          </strong>
+
+          <p class="mt-2 text-zinc-500">
+            study()
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         CLASS
+         ======================================================= -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-violet-400 font-semibold"
+        >
+          03
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          Class
+        </h2>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          A class is like a
+
+          <strong class="text-zinc-200">
+            blueprint
+          </strong>.
+
+          Imagine you want to create 100 students.
+
+          You don't want to manually write the same object
+          structure 100 times.
+
+          A class lets you create objects using one blueprint.
+
+        </p>
+
+
+        <div
+          class="mt-5 p-5 rounded-xl border border-violet-400/20 bg-violet-400/5"
+        >
+
+          <p class="text-zinc-500 text-sm">
+            Think about a building.
+          </p>
+
+          <p
+            class="mt-2 text-lg font-bold text-violet-300"
+          >
+            Class = Building Blueprint
+          </p>
+
+          <p
+            class="mt-2 text-zinc-400"
+          >
+            Object = Actual Building
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <pre
+          class="p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>class Student {
+
+  constructor(name, age) {
+
+    this.name = name;
+
+    this.age = age;
+
+  }
+
+
+  study() {
+
+    console.log(
+      this.name + " is studying"
+    );
+
+  }
+
+}
+
+
+const student1 =
+  new Student("Animesh", 20);
+
+
+const student2 =
+  new Student("Rahul", 21);
+
+
+student1.study();
+
+student2.study();</code></pre>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         CONSTRUCTOR
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-greenx font-semibold"
+      >
+        04
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        Constructor
+      </h2>
+
+
+      <p
+        class="mt-4 text-zinc-400 leading-7"
+      >
+
+        The
+
+        <code class="text-cyanx">
+          constructor()
+        </code>
+
+        is a special method that runs automatically
+        when you create an object using
+
+        <code class="text-violet-300">
+          new
+        </code>.
+
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>class Person {
+
+  constructor(name, age) {
+
+    this.name = name;
+
+    this.age = age;
+
+  }
+
+}
+
+
+const person1 =
+  new Person("Animesh", 20);
+
+
+console.log(person1.name);
+
+console.log(person1.age);</code></pre>
+
+
+      <div
+        class="mt-5 p-4 rounded-xl bg-panel2 border border-line"
+      >
+
+        <p class="text-zinc-400">
+          When you write:
+        </p>
+
+
+        <p
+          class="mt-2 font-mono text-violet-300"
+        >
+          new Person("Animesh", 20)
+        </p>
+
+
+        <p
+          class="mt-3 text-zinc-500"
+        >
+          JavaScript creates the object and automatically
+          calls the constructor.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         THIS
+         ======================================================= -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-cyanx font-semibold"
+        >
+          05
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          What is "this"?
+        </h2>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          Inside a class, the keyword
+
+          <code class="text-cyanx">
+            this
+          </code>
+
+          refers to the
+
+          <strong class="text-zinc-200">
+            current object
+          </strong>.
+
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>class Student {
+
+  constructor(name) {
+
+    this.name = name;
+
+  }
+
+
+  introduce() {
+
+    console.log(
+      "My name is " + this.name
+    );
+
+  }
+
+}</code></pre>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h3
+          class="text-xl font-bold"
+        >
+          Think of it like this
+        </h3>
+
+
+        <div
+          class="mt-5 space-y-3"
+        >
+
+          <div
+            class="p-4 rounded-xl border border-line bg-panel2"
+          >
+
+            <span class="text-violet-300 font-bold">
+              student1
+            </span>
+
+            → this = student1
+
+          </div>
+
+
+          <div
+            class="p-4 rounded-xl border border-line bg-panel2"
+          >
+
+            <span class="text-violet-300 font-bold">
+              student2
+            </span>
+
+            → this = student2
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="mt-5 text-zinc-500"
+        >
+          The same class can create many objects,
+          and each object gets its own data.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         METHODS
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-orangex font-semibold"
+      >
+        06
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        Methods
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+
+        A method is simply a function that belongs to an object
+        or class.
+
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>class Car {
+
+  constructor(brand) {
+
+    this.brand = brand;
+
+  }
+
+
+  start() {
+
+    console.log(
+      this.brand + " started"
+    );
+
+  }
+
+
+  stop() {
+
+    console.log(
+      this.brand + " stopped"
+    );
+
+  }
+
+}
+
+
+const car =
+  new Car("Toyota");
+
+
+car.start();
+
+car.stop();</code></pre>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         ENCAPSULATION
+         ======================================================= -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-pinkx font-semibold"
+        >
+          07
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          Encapsulation
+        </h2>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          Encapsulation means keeping data and the functions
+          that work with that data together.
+
+          It can also mean protecting internal data from
+          being changed directly.
+
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>class BankAccount {
+
+  #balance = 0;
+
+
+  deposit(amount) {
+
+    if (amount > 0) {
+
+      this.#balance += amount;
+
+    }
+
+  }
+
+
+  getBalance() {
+
+    return this.#balance;
+
+  }
+
+}</code></pre>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h3
+          class="text-xl font-bold"
+        >
+          Why?
+        </h3>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          The
+
+          <code class="text-pinkx">
+            #
+          </code>
+
+          makes the property private.
+
+          Code outside the class cannot directly access it.
+
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>const account =
+  new BankAccount();
+
+
+account.deposit(500);
+
+
+console.log(
+  account.getBalance()
+);
+
+// 500</code></pre>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         INHERITANCE
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-greenx font-semibold"
+      >
+        08
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        Inheritance
+      </h2>
+
+
+      <p
+        class="mt-4 text-zinc-400 leading-7"
+      >
+
+        Inheritance allows one class to receive properties
+        and methods from another class.
+
+      </p>
+
+
+      <div
+        class="mt-6 grid md:grid-cols-3 gap-4"
+      >
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2 text-center"
+        >
+
+          <p class="text-zinc-500">
+            Parent
+          </p>
+
+          <p
+            class="mt-2 text-xl font-bold text-violet-300"
+          >
+            Animal
+          </p>
+
+        </div>
+
+
+        <div
+          class="flex items-center justify-center text-2xl text-violet-400"
+        >
+          ↓
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2 text-center"
+        >
+
+          <p class="text-zinc-500">
+            Child
+          </p>
+
+          <p
+            class="mt-2 text-xl font-bold text-greenx"
+          >
+            Dog
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <pre
+        class="mt-6 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>class Animal {
+
+  eat() {
+
+    console.log("Animal is eating");
+
+  }
+
+}
+
+
+class Dog extends Animal {
+
+  bark() {
+
+    console.log("Dog is barking");
+
+  }
+
+}
+
+
+const dog = new Dog();
+
+
+dog.eat();
+
+dog.bark();</code></pre>
+
+
+      <div
+        class="mt-5 p-4 rounded-xl border border-green-400/20 bg-green-400/5"
+      >
+
+        <strong class="text-greenx">
+          extends
+        </strong>
+
+        means:
+
+        “This class inherits from that class.”
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         SUPER
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-cyanx font-semibold"
+      >
+        09
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        super()
+      </h2>
+
+
+      <p
+        class="mt-3 text-zinc-400 leading-7"
+      >
+
+        When a child class has its own constructor,
+        <code class="text-cyanx">
+          super()
+        </code>
+
+        is used to call the parent constructor.
+
+      </p>
+
+
+      <pre
+        class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+      ><code>class Animal {
+
+  constructor(name) {
+
+    this.name = name;
+
+  }
+
+}
+
+
+class Dog extends Animal {
+
+  constructor(name, breed) {
+
+    super(name);
+
+    this.breed = breed;
+
+  }
+
+}
+
+
+const dog =
+  new Dog("Bruno", "Labrador");
+
+
+console.log(dog.name);
+
+console.log(dog.breed);</code></pre>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         POLYMORPHISM
+         ======================================================= -->
+
+    <section
+      class="grid lg:grid-cols-2 gap-6"
+    >
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <p
+          class="text-sm text-orangex font-semibold"
+        >
+          10
+        </p>
+
+
+        <h2
+          class="text-2xl font-bold mt-2"
+        >
+          Polymorphism
+        </h2>
+
+
+        <p
+          class="mt-4 text-zinc-400 leading-7"
+        >
+
+          The word sounds complicated.
+
+          But the basic idea is simple:
+
+          <strong class="text-zinc-200">
+            different objects can respond to the same method
+            in different ways.
+          </strong>
+
+        </p>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>class Animal {
+
+  speak() {
+
+    console.log("Animal sound");
+
+  }
+
+}
+
+
+class Dog extends Animal {
+
+  speak() {
+
+    console.log("Woof!");
+
+  }
+
+}
+
+
+class Cat extends Animal {
+
+  speak() {
+
+    console.log("Meow!");
+
+  }
+
+}</code></pre>
+
+      </article>
+
+
+
+      <article
+        class="rounded-2xl border border-line bg-panel p-6"
+      >
+
+        <h3 class="text-xl font-bold">
+          Same method, different behavior
+        </h3>
+
+
+        <pre
+          class="mt-5 p-5 rounded-xl bg-black/60 overflow-x-auto text-sm leading-7"
+        ><code>const dog = new Dog();
+
+const cat = new Cat();
+
+
+dog.speak();
+
+// Woof!
+
+
+cat.speak();
+
+// Meow!</code></pre>
+
+
+        <p
+          class="mt-5 text-zinc-400"
+        >
+          Both objects have <code class="text-violet-300">speak()</code>,
+          but each behaves differently.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         ABSTRACTION
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <p
+        class="text-sm text-violet-400 font-semibold"
+      >
+        11
+      </p>
+
+
+      <h2
+        class="text-2xl font-bold mt-2"
+      >
+        Abstraction
+      </h2>
+
+
+      <p
+        class="mt-4 text-zinc-400 leading-7 max-w-4xl"
+      >
+
+        Abstraction means hiding unnecessary implementation
+        details and exposing only what the user needs.
+
+      </p>
+
+
+      <div
+        class="mt-6 grid md:grid-cols-2 gap-5"
+      >
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <p
+            class="text-zinc-500 text-sm"
+          >
+            Real world
+          </p>
+
+
+          <p
+            class="mt-2 text-lg font-bold"
+          >
+            Car
+          </p>
+
+
+          <p
+            class="mt-3 text-zinc-400"
+          >
+            You press the start button.
+          </p>
+
+
+          <p
+            class="mt-2 text-zinc-500"
+          >
+            You don't need to know exactly how
+            the engine internally starts.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <p
+            class="text-zinc-500 text-sm"
+          >
+            JavaScript
+          </p>
+
+
+          <p
+            class="mt-2 text-lg font-bold"
+          >
+            Method
+          </p>
+
+
+          <pre
+            class="mt-3 p-4 rounded-lg bg-black/50 text-sm"
+          ><code>car.start();</code></pre>
+
+
+          <p
+            class="mt-2 text-zinc-500"
+          >
+            You use the method without worrying
+            about every internal detail.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         FOUR PILLARS
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6"
+    >
+
+      <p
+        class="text-sm text-violet-300 font-semibold"
+      >
+        The four pillars of OOP
+      </p>
+
+
+      <h2
+        class="text-3xl font-black mt-2"
+      >
+        Remember these four
+      </h2>
+
+
+      <div
+        class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel"
+        >
+
+          <p class="text-violet-300 text-lg font-bold">
+            1. Encapsulation
+          </p>
+
+          <p class="mt-2 text-zinc-500">
+            Keep data and methods together.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel"
+        >
+
+          <p class="text-greenx text-lg font-bold">
+            2. Inheritance
+          </p>
+
+          <p class="mt-2 text-zinc-500">
+            Child class gets features from parent.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel"
+        >
+
+          <p class="text-orangex text-lg font-bold">
+            3. Polymorphism
+          </p>
+
+          <p class="mt-2 text-zinc-500">
+            Same method, different behavior.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel"
+        >
+
+          <p class="text-cyanx text-lg font-bold">
+            4. Abstraction
+          </p>
+
+          <p class="mt-2 text-zinc-500">
+            Hide unnecessary details.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         INTERACTIVE STUDENT
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <div
+        class="flex flex-wrap justify-between items-center gap-4"
+      >
+
+        <div>
+
+          <p
+            class="text-sm text-cyanx font-semibold"
+          >
+            Interactive example
+          </p>
+
+
+          <h2
+            class="text-2xl font-bold mt-1"
+          >
+            Create a Student object
+          </h2>
+
+        </div>
+
+
+        <button
+          id="createStudentBtn"
+          class="px-5 py-2.5 rounded-xl bg-violet-500 hover:bg-violet-400 transition font-semibold"
+        >
+          Create Student
+        </button>
+
+      </div>
+
+
+      <div
+        id="studentOutput"
+        class="mt-6 min-h-32 rounded-xl border border-line bg-panel2 p-5 font-mono text-sm leading-7 text-zinc-300"
+      >
+        Click the button to create a Student object.
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         INTERACTIVE BANK
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <div
+        class="flex flex-wrap justify-between items-center gap-4"
+      >
+
+        <div>
+
+          <p
+            class="text-sm text-greenx font-semibold"
+          >
+            Encapsulation example
+          </p>
+
+
+          <h2
+            class="text-2xl font-bold mt-1"
+          >
+            Bank Account
+          </h2>
+
+        </div>
+
+
+        <div class="flex gap-2">
+
+          <button
+            id="depositBtn"
+            class="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-500 font-semibold"
+          >
+            Deposit ₹500
+          </button>
+
+
+          <button
+            id="withdrawBtn"
+            class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 font-semibold"
+          >
+            Withdraw ₹200
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="bankOutput"
+        class="mt-6 min-h-28 rounded-xl border border-line bg-panel2 p-5 font-mono text-sm leading-7"
+      >
+        Balance: ₹0
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         QUICK REVISION
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        Quick Revision
+      </h2>
+
+
+      <div class="mt-5 overflow-x-auto">
+
+        <table class="w-full text-left text-sm">
+
+          <thead>
+
+            <tr
+              class="border-b border-line text-zinc-500"
+            >
+
+              <th class="py-3 pr-5">
+                Term
+              </th>
+
+              <th class="py-3 pr-5">
+                Simple meaning
+              </th>
+
+              <th class="py-3">
+                Example
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody class="divide-y divide-line">
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-violet-300"
+              >
+                Object
+              </td>
+
+              <td class="py-4 pr-5">
+                A thing
+              </td>
+
+              <td class="py-4">
+                student1
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-cyanx"
+              >
+                Class
+              </td>
+
+              <td class="py-4 pr-5">
+                Blueprint
+              </td>
+
+              <td class="py-4">
+                class Student
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-greenx"
+              >
+                Constructor
+              </td>
+
+              <td class="py-4 pr-5">
+                Initializes object
+              </td>
+
+              <td class="py-4">
+                constructor()
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-orangex"
+              >
+                Method
+              </td>
+
+              <td class="py-4 pr-5">
+                Object action
+              </td>
+
+              <td class="py-4">
+                student.study()
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-pinkx"
+              >
+                Encapsulation
+              </td>
+
+              <td class="py-4 pr-5">
+                Protect/group data
+              </td>
+
+              <td class="py-4">
+                #balance
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-greenx"
+              >
+                Inheritance
+              </td>
+
+              <td class="py-4 pr-5">
+                Reuse parent features
+              </td>
+
+              <td class="py-4">
+                extends
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-orangex"
+              >
+                Polymorphism
+              </td>
+
+              <td class="py-4 pr-5">
+                Same action, different behavior
+              </td>
+
+              <td class="py-4">
+                dog.speak()
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td
+                class="py-4 pr-5 font-semibold text-cyanx"
+              >
+                Abstraction
+              </td>
+
+              <td class="py-4 pr-5">
+                Hide complexity
+              </td>
+
+              <td class="py-4">
+                car.start()
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         LEARNING ORDER
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-line bg-panel p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        What should you learn first?
+      </h2>
+
+
+      <div
+        class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <span class="text-violet-400 font-bold">
+            01
+          </span>
+
+          <p class="mt-2 font-bold">
+            Objects
+          </p>
+
+          <p class="mt-1 text-zinc-500 text-sm">
+            Understand properties and methods.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <span class="text-cyanx font-bold">
+            02
+          </span>
+
+          <p class="mt-2 font-bold">
+            Classes
+          </p>
+
+          <p class="mt-1 text-zinc-500 text-sm">
+            Learn blueprints and constructors.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <span class="text-greenx font-bold">
+            03
+          </span>
+
+          <p class="mt-2 font-bold">
+            Inheritance
+          </p>
+
+          <p class="mt-1 text-zinc-500 text-sm">
+            Learn extends and super.
+          </p>
+
+        </div>
+
+
+        <div
+          class="p-5 rounded-xl border border-line bg-panel2"
+        >
+
+          <span class="text-orangex font-bold">
+            04
+          </span>
+
+          <p class="mt-2 font-bold">
+            Four Pillars
+          </p>
+
+          <p class="mt-1 text-zinc-500 text-sm">
+            Encapsulation, inheritance,
+            polymorphism, abstraction.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         CHECKLIST
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6"
+    >
+
+      <h2 class="text-2xl font-bold">
+        Beginner Checklist
+      </h2>
+
+
+      <div
+        class="mt-5 grid md:grid-cols-2 gap-4"
+      >
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand what an object is.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand what a class is.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand constructor().
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand the this keyword.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand methods.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand inheritance.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand polymorphism.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand encapsulation.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I understand abstraction.
+
+        </label>
+
+
+        <label class="flex gap-3">
+
+          <input
+            type="checkbox"
+            class="mt-1 accent-violet-500"
+          >
+
+          I can create my own class.
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         FINAL
+         ======================================================= -->
+
+    <section
+      class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-7 text-center"
+    >
+
+      <p
+        class="text-2xl md:text-3xl font-black"
+      >
+        Class → Object → Properties + Methods
+      </p>
+
+
+      <p
+        class="mt-4 text-zinc-400"
+      >
+        Once this becomes comfortable,
+        inheritance and the four pillars become much easier.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer
+    class="border-t border-line py-8 text-center text-sm text-zinc-600"
+  >
+
+    Don't just read OOP.
+    Change the code and create your own classes.
+
+  </footer>
+
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
